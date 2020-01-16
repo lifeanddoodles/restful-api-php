@@ -6,8 +6,8 @@ class Api_User {
 
   // Properties
   public $id;
-  public $email;
-  public $pass;
+  public $username;
+  public $password;
   public $fname;
   public $lname;
 
@@ -21,7 +21,7 @@ class Api_User {
     // create query
     $query = 'SELECT *
     FROM ' . $this->table . '
-    ORDER BY student_id ASC';
+    ORDER BY api_user_id ASC';
 
     // prepare statement
     $stmt = $this->conn->prepare($query);
