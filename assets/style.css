@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  background-color: #f6f6f6;
+}
+h1 {
+  text-align: center;
+}
+p,
+small {
+  margin: 0 auto 1rem;
+}
+small {
+  font-size: 90%;
+  display: block;
+}
+a {
+  color: #111;
+  text-decoration: none;
+}
+form {
+  margin: 0 auto;
+  width: 100%;
+}
+label,
+input,
+textarea,
+button {
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+input,
+textarea,
+button {
+  padding: 0.5em 1em;
+}
+input,
+textarea {
+  border: solid 2px #ccc;
+}
+input[type='text'],
+input[type='number'],
+input[type='password'],
+button {
+  display: block;
+  width: 100%;
+  border-radius: 1.25em;
+}
+button {
+  color: #fff;
+  background-color: #e98c3b;
+  border: none;
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  background-color: #d97218;
+}
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.unstyled-list,
+.inline-list,
+.pagination {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.inline-list li,
+.pagination li {
+  display: inline-block;
+}
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.landing-page__form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+.button--landing-page {
+  margin-top: 3rem;
+}
+.logo {
+  max-width: 480px;
+}
+.logo,
+.instructions {
+  margin-bottom: 3rem;
+}
+.user__list {
+  background-color: #fefefe;
+  border-top: solid 10px #ed8b49;
+  max-width: 600px;
+  margin: 0 auto 1em;
+}
+.user {
+  display: grid;
+  grid-gap: 0.5em 2em;
+  grid-template-columns: auto 4fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 1em 2em;
+}
+.user:nth-child(2n) {
+  background-color: #ebebeb;
+}
+.user__active {
+  width: 1em;
+  background-color: green;
+}
+.user__id,
+.user__name {
+  margin: 0;
+}
+.user__name {
+  color: #878787;
+  grid-column-start: 2;
+}
+.user__group-list {
+  grid-row: 1 / span 2;
+  grid-column: 3/4;
+}
+.user__group-list li::after {
+  content: ',';
+}
+.user__group-list li:last-child::after {
+  content: '';
+}
+.pagination,
+.site__footer {
+  display: flex;
+  justify-content: center;
+}
+.pagination {
+  margin-bottom: 1em;
+}
+.pagination__link {
+  padding: 0.5em 1em;
+}
+.pagination__link:hover,
+.pagination__link:focus {
+  border-bottom: solid 2px #e98c3b;
+}
+.site__footer {
+  padding: 1em 2em;
+  background-color: #ebebeb;
+}

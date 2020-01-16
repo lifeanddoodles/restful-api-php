@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>LMS</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body class="landing-page">
+    <main class="landing-page__form">
+      <h1 class="logo">
+        <img
+          src="assets/images/logo.svg"
+          alt="KnowledgeCity Learning Solutions"
+        />
+      </h1>
+      <section class="instructions">
+        <p>Welcome to the Learning Management System</p>
+        <small>Please log in to continue</small>
+      </section>
+      <form action="" id="login">
+        <input
+          type="text"
+          name="username"
+          id="username"
+          aria-label="Username"
+          placeholder="Username"
+          required
+        />
+
+        <input
+          type="password"
+          name="password"
+          id="password"
+          aria-label="Password"
+          placeholder="Password"
+          minlength="6"
+          required
+        />
+        <label for="remember" class="remember"
+          ><input type="checkbox" name="remember" id="remember" /> Remember
+          me</label
+        >
+        <button type="submit" class="button--landing-page">Log in</button>
+      </form>
+    </main>
+  </body>
+</html>
