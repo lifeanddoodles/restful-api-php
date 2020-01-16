@@ -128,6 +128,30 @@
         }
       ];
 
+      const fetchUsers = async () => {
+        try {
+          const response = await fetch('/knowledgecity/api/student/read.php');
+          if (!response.ok) {
+            throw new Error(response.status);
+          }
+          // const data = await response.json();
+          const data = await response;
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchUsers();
+
+      // function traer() {
+      //   fetch('/api/student/read.php')
+      //     .then(res => res.json())
+      //     .then(datos => {
+      //       // console.log(datos)
+      //       tabla(datos);
+      //     });
+      // }
+
       createListItem = user => {
         return `<li class='user'>
             <i class='user__active icon ${

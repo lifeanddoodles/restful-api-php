@@ -45,5 +45,31 @@
         <button type="submit" class="button--landing-page">Log in</button>
       </form>
     </main>
+    <script>
+      let username = document.querySelector('#username').value;
+      let password = document.querySelector('#password').value;
+      handleSubmit = event => {
+        event.preventDefault();
+        fetch(
+          '/knowledgecity/api/api_user/post.php',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+          } // send data
+        )
+          .then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => {
+            // Handle errors (if any)
+            console.log(error);
+          });
+      };
+      document
+        .querySelector('#login')
+        .addEventListener('submit', handleSubmit, false);
+    </script>
   </body>
 </html>
