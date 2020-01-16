@@ -11,51 +11,14 @@
     <main>
       <h1>User List</h1>
       <ul id="users" class="user__list unstyled-list"></ul>
-      <nav role="navigation" aria-label="pagination">
-        <ul class="pagination">
-          <li class="pagination__item pagination__item--previous-group">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden"
-                >Previous <span>set of pages</span></span
-              ></a
-            >
-          </li>
-          <li class="pagination__item pagination__item--previous-page">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden">Previous <span>page</span></span></a
-            >
-          </li>
-          <li class="pagination__item">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden">page </span>1</a
-            >
-          </li>
-          <li class="pagination__item">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden">page </span>2</a
-            >
-          </li>
-          <li class="pagination__item">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden">page </span>3</a
-            >
-          </li>
-          <li class="pagination__item pagination__item--next-page">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden">Next <span>page</span></span></a
-            >
-          </li>
-          <li class="pagination__item pagination__item--next-group">
-            <a href="" class="pagination__link"
-              ><span class="visuallyhidden"
-                >Next <span>set of pages</span></span
-              ></a
-            >
-          </li>
-        </ul>
-      </nav>
+      <nav
+        role="navigation"
+        aria-label="pagination"
+        class="pagination"
+        id="pagination"
+      ></nav>
     </main>
-    <footer class="site__footer"><a href="/logout">Log Out</a></footer>
+    <footer class="site__footer"><a href="/logout.html">Log Out</a></footer>
     <script>
       const users = [
         {
@@ -181,11 +144,62 @@
             </ul>
           </li>`;
       };
-      populateUsersList = () => {
-        const ul = document.querySelector('#users');
-        ul.innerHTML = users.map(createListItem).join('');
+
+      const list_element = document.querySelector('#users');
+      const pagination_element = document.querySelector('#pagination');
+
+      let current_page = 1;
+      let rows = 5;
+
+      setupPagination = (items, wrapper, rows_per_page) => {
+        wrapper.innerHTML = '';
+
+        let page_count = Math.ceil(items.length / rows_per_page);
+        for (let i = 1; i < page_count + 1; i++) {
+          let btn = paginationButton(i, items);
+          wrapper.appendChild(btn);
+        }
       };
-      populateUsersList();
+
+      paginationButton = (page, items) => {
+        let button = document.createElement('button');
+        button.classList.add('pagination__item');
+        button.innerHTML = `<span class="visuallyhidden">page </span>${page}`;
+
+        if (current_page == page) button.classList.add('active');
+
+        button.addEventListener('click', function() {
+          current_page = page;
+          populateList(items, list_element, rows, current_page);
+
+          let current_btn = document.querySelector('.pagination button.active');
+          current_btn.classList.remove('active');
+
+          button.classList.add('active');
+        });
+
+        return button;
+      };
+
+      populateList = (items, wrapper, rows_per_page, page) => {
+        wrapper.innerHTML = '';
+        page--;
+
+        let start = rows_per_page * page;
+        let end = start + rows_per_page;
+        let paginatedItems = items.slice(start, end);
+
+        for (let i = 0; i < paginatedItems.length; i++) {
+          let item = paginatedItems[i];
+
+          let item_element = createListItem(item);
+
+          wrapper.innerHTML += item_element;
+        }
+      };
+
+      populateList(users, list_element, rows, current_page);
+      setupPagination(users, pagination_element, rows);
     </script>
   </body>
 </html>

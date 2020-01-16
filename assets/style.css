@@ -150,13 +150,27 @@ button:focus {
 .pagination {
   margin-bottom: 1em;
 }
-.pagination__link {
+.pagination__item {
+  color: #111;
+  background-color: transparent;
+  border-bottom: solid 2px transparent;
+  border-radius: 0;
+  display: inline-block;
+  width: initial;
+}
+.pagination__item.active,
+.pagination__item:hover,
+.pagination__item:focus {
+  background-color: transparent;
+  border-bottom-color: #e98c3b;
+}
+/* .pagination__link {
   padding: 0.5em 1em;
 }
 .pagination__link:hover,
 .pagination__link:focus {
   border-bottom: solid 2px #e98c3b;
-}
+} */
 .site__footer {
   padding: 1em 2em;
   background-color: #ebebeb;
