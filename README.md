@@ -1,63 +1,32 @@
-# Fullstack Test
+# RESTful API with PHP
 
-Develop simple RESTful API using PHP.
+A simple RESTful API with PHP, HTML, CSS, JavaScript. No frameworks.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
+MAMP, XAMP, or alternatives to be able to use php files in the browser.
 
-```
-Give examples
-```
+### Installing the database
 
-### Installing
+1. Download the repo.
+2. Install the database called knowledgecity.sql using myPHPAdmin or an alternative.
+3. Create a user for the database and grant all privileges.
+4. Update the database credentials inside config/DB.php.
 
-A step by step series of examples that tell you how to get a development env running
+### Opening the files in the browser
 
-Say what the step will be
+#### MAMP
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+1. Move the extracted file (the repo folder) inside `Applications/MAMP/htdocs/repo_folder_name`.
+2. Start MAMP.
+3. In the page that opened in the browser click the link that says 'MY WEBSITE'.
+4. Inside the localhost page, click the link with the repo folder's name.
 
 ## Built With
 
 - HTML
 - CSS
 - JavaScript
+- PHP
