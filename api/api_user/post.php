@@ -1,35 +1,22 @@
 <?php
-session_start();
 
-include_once '../../config/DB.php';
+// Headers
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Expose-Headers: Location');
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+require_once '../../config/DB.php';
+require_once '../../models/Api_User.php';
 
-if( $username === '' || $password === '' ) {
-echo json_encode('Error: All fields are required');
-} else {
-    // echo json_encode('User added successfully');
-    // verify if user exists
-    $query = 'SELECT * FROM api_users WHERE api_user_username = ?';
-    $stmt = $pdo->prepare($query);
-    $stmt->execute(array($username));
-    $result = $stmt->fetch();
+// instantiate database and connect
+$database = new Database();
+$db = $database->connect();
 
-    if(!$result){
-        // user not found
-        echo 'User does not exist';
-        die();
-    }
-    if( password_verify( $password , $result['api_user_password']) ) {
-        // passwords match
-        $_SESSION['admin'] = $username;
-        header('Location: userlist.html');
+// instantiate api_user object
+$api_user = new Api_User($db);
 
-    } else {
-        echo 'Incorrect password';
-        die();
-    }
-}
+// api_user query
+$result = $api_user->login();
+echo $result;
 
 ?>

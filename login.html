@@ -19,7 +19,7 @@
         <p>Welcome to the Learning Management System</p>
         <small>Please log in to continue</small>
       </section>
-      <form action="" id="login">
+      <form action="" id="login" method="POST">
         <input
           type="text"
           name="username"
@@ -44,10 +44,16 @@
         >
         <button type="submit" class="button--landing-page">Log in</button>
       </form>
+      <!-- <button id="test" type="submit" class="button--landing-page">
+        Load api users
+      </button> -->
     </main>
     <script>
       let username = document.querySelector('#username').value;
       let password = document.querySelector('#password').value;
+      // const loginApi = file_get_contents('./api/api_user/post.php');
+      // console.log(loginApi);
+
       handleSubmit = event => {
         event.preventDefault();
         fetch(
@@ -57,19 +63,35 @@
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: username, password: password })
+            body: JSON.stringify({
+              api_user_username: username,
+              api_user_password: password
+            })
           } // send data
         )
-          .then(response => response.json())
+          // .then(response => response.json())
           .then(data => console.log(data))
           .catch(error => {
             // Handle errors (if any)
             console.log(error);
           });
       };
+      // handleClick = event => {
+      //   event.preventDefault();
+      //   fetch('/knowledgecity/api/api_user/read.php')
+      //     .then(response => response.json())
+      //     .then(data => console.log(data))
+      //     .catch(error => {
+      //       // Handle errors (if any)
+      //       console.log(error);
+      //     });
+      // };
       document
         .querySelector('#login')
         .addEventListener('submit', handleSubmit, false);
+      // document
+      //   .querySelector('#test')
+      //   .addEventListener('click', handleClick, false);
     </script>
   </body>
 </html>
