@@ -7,7 +7,7 @@
     <title>User List</title>
     <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body>
+  <body class="landing-page">
     <main>
       <h1>User List</h1>
       <ul id="users" class="user__list unstyled-list"></ul>
@@ -18,115 +18,11 @@
         id="pagination"
       ></nav>
     </main>
-    <footer class="site__footer"><a href="/logout.html">Log Out</a></footer>
+    <footer class="site__footer">
+      <button onclick="logout()">Log Out</button>
+    </footer>
     <script>
-      const users = [
-        {
-          student_id: 1,
-          student_fname: 'name1',
-          student_lname: 'lname1',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 2,
-          student_fname: 'name2',
-          student_lname: 'lname2',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 3,
-          student_fname: 'name3',
-          student_lname: 'lname3',
-          student_active: false,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 4,
-          student_fname: 'name4',
-          student_lname: 'lname4',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 5,
-          student_fname: 'name5',
-          student_lname: 'lname5',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 6,
-          student_fname: 'name6',
-          student_lname: 'lname6',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 7,
-          student_fname: 'name7',
-          student_lname: 'lname7',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 8,
-          student_fname: 'name8',
-          student_lname: 'lname8',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 9,
-          student_fname: 'name9',
-          student_lname: 'lname9',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 10,
-          student_fname: 'name10',
-          student_lname: 'lname10',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 11,
-          student_fname: 'name11',
-          student_lname: 'lname11',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 12,
-          student_fname: 'name12',
-          student_lname: 'lname12',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 13,
-          student_fname: 'name13',
-          student_lname: 'lname13',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 14,
-          student_fname: 'name14',
-          student_lname: 'lname14',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        },
-        {
-          student_id: 15,
-          student_fname: 'name15',
-          student_lname: 'lname15',
-          student_active: true,
-          groups: ['category1', 'category2', 'category3']
-        }
-      ];
+      let users = [];
 
       const fetchUsers = async () => {
         try {
@@ -134,23 +30,15 @@
           if (!response.ok) {
             throw new Error(response.status);
           }
-          // const data = await response.json();
-          const data = await response;
-          console.log(data);
+          const data = await response.json();
+          users = data;
+          populateList(users, list_element, rows, current_page);
+          setupPagination(users, pagination_element, rows);
         } catch (error) {
           console.log(error);
         }
       };
       fetchUsers();
-
-      // function traer() {
-      //   fetch('/api/student/read.php')
-      //     .then(res => res.json())
-      //     .then(datos => {
-      //       // console.log(datos)
-      //       tabla(datos);
-      //     });
-      // }
 
       createListItem = user => {
         return `<li class='user'>
@@ -222,8 +110,18 @@
         }
       };
 
-      populateList(users, list_element, rows, current_page);
-      setupPagination(users, pagination_element, rows);
+      logout = () => {
+        fetchUsersAlt = () => {
+          fetch('/knowledgecity/api/api_user/delete.php', { method: 'DELETE' })
+            .then(res => res.json())
+            .then(data => {
+              users = data;
+              populateList(users, list_element, rows, current_page);
+              setupPagination(users, pagination_element, rows);
+              console.log(data);
+            });
+        };
+      };
     </script>
-  </body>
+  </body class="landing-page">
 </html>

@@ -13,7 +13,7 @@ class Student {
   public $isactive;
 
   // constructor with database
-  public function __construct($db) {
+  public function __construct( $db ) {
     $this->conn = $db;
   }
 
@@ -25,7 +25,7 @@ class Student {
     ORDER BY student_id ASC';
 
     // prepare statement
-    $stmt = $this->conn->prepare($query);
+    $stmt = $this->conn->prepare( $query );
 
     // execute query
     $stmt->execute();
