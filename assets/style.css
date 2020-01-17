@@ -61,6 +61,28 @@ button:hover,
 button:focus {
   background-color: #d97218;
 }
+.input--with-icon {
+  background-repeat: no-repeat;
+}
+.input--icon-left {
+  background-position-x: 0.5em;
+  padding-left: 3em;
+}
+.input--user {
+  background-image: url('images/user.svg');
+}
+.input--password {
+  background-image: url('images/password.svg');
+}
+.button--logout {
+  background-image: url('images/password.svg');
+}
+.button--landing-page {
+  margin-top: 3rem;
+  background-image: url('images/password.svg');
+  background-position-x: calc(100% - 0.5em);
+  padding-right: 3em;
+}
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -94,9 +116,6 @@ button:focus {
   max-width: 480px;
   margin: 0 auto;
 }
-.button--landing-page {
-  margin-top: 3rem;
-}
 .logo {
   max-width: 480px;
 }
@@ -113,16 +132,23 @@ button:focus {
 .user {
   display: grid;
   grid-gap: 0.5em 2em;
-  grid-template-columns: auto 4fr 3fr;
-  grid-template-rows: 1fr 1fr;
-  padding: 1em 2em;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr 1fr auto;
+  padding: 1em 2em 1.25em;
 }
 .user:nth-child(2n) {
   background-color: #ebebeb;
 }
-.user__active {
+.user__status {
   width: 1em;
+  height: 1em;
+  clip-path: circle();
+}
+.user__status--active {
   background-color: green;
+}
+.user__status--inactive {
+  background-color: red;
 }
 .user__id,
 .user__name {
@@ -133,8 +159,20 @@ button:focus {
   grid-column-start: 2;
 }
 .user__group-list {
-  grid-row: 1 / span 2;
-  grid-column: 3/4;
+  grid-column-start: 2;
+}
+@media screen and (min-width: 600px) {
+  .user {
+    grid-template-columns: auto 4fr 3fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .user__name {
+    grid-column-start: 2;
+  }
+  .user__group-list {
+    grid-row: 1 / span 2;
+    grid-column: 3/4;
+  }
 }
 .user__group-list li::after {
   content: ',';
@@ -150,7 +188,8 @@ button:focus {
 .pagination {
   margin-bottom: 1em;
 }
-.pagination__item {
+.pagination__item,
+.button--logout {
   color: #111;
   background-color: transparent;
   border-bottom: solid 2px transparent;
@@ -160,17 +199,23 @@ button:focus {
 }
 .pagination__item.active,
 .pagination__item:hover,
-.pagination__item:focus {
+.pagination__item:focus,
+.button--logout.active,
+.button--logout:hover,
+.button--logout:focus {
   background-color: transparent;
   border-bottom-color: #e98c3b;
 }
-/* .pagination__link {
-  padding: 0.5em 1em;
+.site {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  height: 100vh;
 }
-.pagination__link:hover,
-.pagination__link:focus {
-  border-bottom: solid 2px #e98c3b;
-} */
+.site__content {
+  flex: 1 0 auto;
+  flex-direction: column;
+}
 .site__footer {
   padding: 1em 2em;
   background-color: #ebebeb;

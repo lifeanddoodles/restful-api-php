@@ -7,8 +7,8 @@
     <title>User List</title>
     <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body class="landing-page">
-    <main>
+  <body class="site">
+    <main class="site__content">
       <h1>User List</h1>
       <ul id="users" class="user__list unstyled-list"></ul>
       <nav
@@ -19,7 +19,7 @@
       ></nav>
     </main>
     <footer class="site__footer">
-      <button onclick="logout()">Log Out</button>
+      <button class="button--logout input--with-icon input--icon-left" onclick="logout()">Log Out</button>
     </footer>
     <script>
       let users = [];
@@ -42,8 +42,8 @@
 
       createListItem = user => {
         return `<li class='user'>
-            <i class='user__active icon ${
-              user.student_active ? 'active' : ''
+            <i class='user__status icon ${
+              user.student_active==1 ? 'user__status--active' : 'user__status--inactive'
             }'></i>
             <p class='user__id'>${user.student_id}</p>
             <p class='user__name'>${user.student_fname} ${
@@ -110,17 +110,15 @@
         }
       };
 
-      logout = () => {
-        fetchUsersAlt = () => {
-          fetch('/knowledgecity/api/api_user/delete.php', { method: 'DELETE' })
-            .then(res => res.json())
-            .then(data => {
-              users = data;
-              populateList(users, list_element, rows, current_page);
-              setupPagination(users, pagination_element, rows);
-              console.log(data);
-            });
-        };
+      logout = async () => {
+        try {
+          const response = fetch('/knowledgecity/api/api_user/delete.php', { method: 'DELETE' });
+          if(!response.ok) {
+            throw new Error(response.status);
+          }
+        } catch(error) {
+          console.log(error);
+        }
       };
     </script>
   </body class="landing-page">

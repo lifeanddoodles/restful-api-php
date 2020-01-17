@@ -11,9 +11,9 @@ MAMP, XAMP, or alternatives to be able to use php files in the browser.
 ### Installing the database
 
 1. Download the repo.
-2. Install the database called knowledgecity.sql using myPHPAdmin or an alternative.
+2. Install the database called `knowledgecity.sql` using myPHPAdmin or an alternative.
 3. Create a user for the database and grant all privileges.
-4. Update the database credentials inside config/DB.php.
+4. Update the database credentials inside `config/DB.php`.
 
 ### Opening the files in the browser
 
